@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "MainViewController.h"
 
 @interface AppDelegate ()
 
@@ -16,8 +17,34 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    
+    [self setWindow:[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]]];
+    self.window.rootViewController = [self setRootVC];
+    self.window.backgroundColor = [UIColor whiteColor];
+    [self.window makeKeyAndVisible];
+    
     return YES;
+}
+
+- (UITabBarController *) setRootVC {
+
+    MainViewController *mainVC = [[MainViewController alloc] init];
+    UINavigationController *mainNVC = [[UINavigationController alloc] initWithRootViewController:mainVC];
+    mainVC.title = @"网易";
+    mainNVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"网易" image:[UIImage imageNamed:@"tabbar_icon_news_normal"] tag:0];
+    
+    UIViewController *secondVC = [[UIViewController alloc] init];
+    UINavigationController *secNVC = [[UINavigationController alloc] initWithRootViewController:secondVC];
+    secondVC.title = @"阅读";
+    secNVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"阅读" image:[UIImage imageNamed:@"tabbar_icon_reader_normal"] tag:1];
+
+    UITabBarController *tabVC = [[UITabBarController alloc] init];
+    tabVC.viewControllers = @[mainNVC, secNVC];
+    
+    
+    [UITabBar appearance].tintColor = [UIColor redColor];
+    
+    return tabVC;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
