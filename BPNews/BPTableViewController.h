@@ -10,4 +10,11 @@
 
 @interface BPTableViewController : UITableViewController
 
+/**
+ *  url端口
+ */
+@property(nonatomic,copy) NSString *urlString;
+
+@property (nonatomic,assign) NSInteger index;
+
 @end

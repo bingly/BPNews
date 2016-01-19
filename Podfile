@@ -1,0 +1,7 @@
+platform :ios, '7.0'
+pod 'MJRefresh'
+pod 'SVProgressHUD'
+pod 'MJExtension'
+pod 'SDWebImage'
+pod 'FDFullscreenPopGesture'
+pod 'AFNetworking'
