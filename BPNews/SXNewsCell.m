@@ -89,11 +89,11 @@
         imgOther2 = [[UIImageView alloc] init];
         [self.contentView addSubview:imgOther2];
         
-        
+        PREPCONSTRAINTS(imgIcon);
         
         
         if ([reuseIdentifier isEqualToString:@"NewsCell"]) {
-            PREPCONSTRAINTS(imgIcon);
+            
             CENTER_VIEW_V(self.contentView, imgIcon);
             ALIGN_VIEW_LEFT_CONSTANT(self.contentView, imgIcon, 8);
             ALIGN_VIEW_TOP_CONSTANT(self.contentView, imgIcon, 8);
@@ -116,7 +116,6 @@
             ALIGN_VIEW_TOP_CONSTANT(self.contentView, lblReply, 10);
             [constraints addObjectsFromArray:CONSTRAINTS(@"|-8-[lblTitle]-[lblReply]-8-|", NSDictionaryOfVariableBindings(lblTitle, lblReply))];
 
-            PREPCONSTRAINTS(imgIcon);
             PREPCONSTRAINTS(imgOther1);
             PREPCONSTRAINTS(imgOther2);
             ALIGN_VIEW_TOP_CONSTANT(self.contentView, imgIcon, 38);
@@ -129,31 +128,51 @@
             
             [constraints addObjectsFromArray:CONSTRAINTS(@"H:|-8-[imgIcon]-[imgOther1(imgIcon)]-[imgOther2(imgIcon)]-8-|", NSDictionaryOfVariableBindings(imgIcon, imgOther1, imgOther2))];
             [self.contentView addConstraints:constraints];
-        } else if ([reuseIdentifier isEqualToString:@"TopImageCell"]) {
+        } else if ([reuseIdentifier isEqualToString:@"TopImageCell"] || [reuseIdentifier isEqualToString:@"TopTxtCell"]) {
         
-            PREPCONSTRAINTS(imgIcon);
             STRETCH_VIEW_H(self.contentView, imgIcon);
             ALIGN_VIEW_TOP(self.contentView, imgIcon);
             ALIGN_VIEW_BOTTOM_CONSTANT(self.contentView, imgIcon, -30);
             
-//            UIImageView *photoList = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"night_photoset_list_cell_icon"]];
-//            PREPCONSTRAINTS(photoList);
-//            ALIGN_VIEW_BOTTOM_CONSTANT(self.contentView, photoList, 4);
-//            ALIGN_VIEW_LEFT_CONSTANT(self.contentView, photoList, -8);
+            UIImageView *photoList = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"night_photoset_list_cell_icon"]];
+            [self.contentView addSubview:photoList];
+            PREPCONSTRAINTS(photoList);
+            ALIGN_VIEW_BOTTOM_CONSTANT(self.contentView, photoList, -8);
+            ALIGN_VIEW_LEFT_CONSTANT(self.contentView, photoList, 8);
+            CONSTRAIN_HEIGHT(photoList, 22);
+            CONSTRAIN_WIDTH(photoList, 30);
             
             PREPCONSTRAINTS(lblTitle);
             ALIGN_VIEW_LEFT_CONSTANT(self.contentView, lblTitle, 44);
             ALIGN_VIEW_BOTTOM_CONSTANT(self.contentView, lblTitle, -10);
-//
+
 //            UILabel *smallPoint = [[UILabel alloc] init];
+//            [self.contentView addSubview:smallPoint];
 //            smallPoint.text = @"···";
 //            smallPoint.font = [UIFont systemFontOfSize:33];
 //            PREPCONSTRAINTS(smallPoint);
 //            ALIGN_VIEW_BOTTOM_CONSTANT(self.contentView, smallPoint, 10);
 //            ALIGN_VIEW_RIGHT_CONSTANT(self.contentView, smallPoint, -5);
-//            
-//            [self.contentView addSubview:photoList];
-//            [self.contentView addSubview:smallPoint];
+
+        } else if ([reuseIdentifier isEqualToString:@"BigImageCell"]) {
+        
+            NSMutableArray *constraints = [[NSMutableArray alloc] init];
+            PREPCONSTRAINTS(lblTitle);
+            PREPCONSTRAINTS(lblSubtitle);
+            lblSubtitle.numberOfLines = 1;
+            [constraints addObjectsFromArray:CONSTRAINTS(@"H:|-8-[lblTitle]-|", NSDictionaryOfVariableBindings(lblTitle))];
+            
+            
+//            ALIGN_VIEW_LEFT_CONSTANT(self.contentView, lblTitle, 8);
+//            ALIGN_VIEW_TOP_CONSTANT(self.contentView, lblTitle, 8);
+            [constraints addObjectsFromArray:CONSTRAINTS(@"V:|-8-[lblTitle(19)]->=0-[lblSubtitle]-8-|", NSDictionaryOfVariableBindings(lblTitle, lblSubtitle))];
+            [constraints addObjectsFromArray:CONSTRAINTS(@"H:|-8-[lblSubtitle]-|", NSDictionaryOfVariableBindings(lblSubtitle))];
+            
+            CONSTRAIN_HEIGHT(imgIcon, 102);
+            [constraints addObjectsFromArray:CONSTRAINTS(@"H:|-8-[imgIcon]-8-|", NSDictionaryOfVariableBindings(imgIcon))];
+            [constraints addObjectsFromArray:CONSTRAINTS(@"V:|-35-[imgIcon]-37-|", NSDictionaryOfVariableBindings(imgIcon))];
+            
+            [self.contentView addConstraints:constraints];
         }
         
         
@@ -170,6 +189,8 @@
     [imgIcon sd_setImageWithURL:[NSURL URLWithString:self.NewsModel.imgsrc] placeholderImage:[UIImage imageNamed:@"302"]];
     lblTitle.text = self.NewsModel.title;
     lblSubtitle.text = self.NewsModel.digest;
+//    NSLog(@"imgIcon: %@", NSStringFromCGRect(imgIcon.frame));
+//    NSLog(@"%@: %@", lblTitle.text, NSStringFromCGRect(lblTitle.frame));
     
     // 如果回复太多就改成几点几万
     CGFloat count =  [self.NewsModel.replyCount intValue];
@@ -180,7 +201,7 @@
         displayCount = [NSString stringWithFormat:@"%.0f跟帖",count];
     }
     lblReply.text = displayCount;
-    NSLog(@"lblReply: %@", NSStringFromCGRect(lblReply.frame));
+    
     
     // 多图cell
     if (self.NewsModel.imgextra.count == 2) {

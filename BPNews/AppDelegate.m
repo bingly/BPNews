@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "MainViewController.h"
+#import "SplashViewController.h"
 
 @interface AppDelegate ()
 
@@ -17,21 +18,27 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+
+    application.statusBarStyle = UIStatusBarStyleLightContent;
     
     [self setWindow:[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]]];
-    self.window.rootViewController = [self setRootVC];
+    self.window.rootViewController = [[SplashViewController alloc] init];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addRootVC) name:@"SXAdvertisementKey" object:nil];
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
     return YES;
 }
 
+- (void) addRootVC {
+    self.window.rootViewController = [self setRootVC];
+}
+
 - (UITabBarController *) setRootVC {
 
     MainViewController *mainVC = [[MainViewController alloc] init];
     UINavigationController *mainNVC = [[UINavigationController alloc] initWithRootViewController:mainVC];
-    mainVC.title = @"网易";
-    mainNVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"网易" image:[UIImage imageNamed:@"tabbar_icon_news_normal"] tag:0];
+    mainNVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"网易" image:[UIImage imageNamed:@"tabbar_icon_news_normal"] selectedImage:[UIImage imageNamed:@"tabbar_icon_news_highlight"]];
     
     UIViewController *secondVC = [[UIViewController alloc] init];
     UINavigationController *secNVC = [[UINavigationController alloc] initWithRootViewController:secondVC];

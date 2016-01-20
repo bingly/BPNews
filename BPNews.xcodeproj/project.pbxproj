@@ -23,6 +23,9 @@
 		158DEDA11C4B94000018FDDA /* BPTitleLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 158DEDA01C4B94000018FDDA /* BPTitleLabel.m */; };
 		158DEDA31C4B98100018FDDA /* NewsURLs.plist in Resources */ = {isa = PBXBuildFile; fileRef = 158DEDA21C4B98100018FDDA /* NewsURLs.plist */; };
 		158DEDA71C4BA02D0018FDDA /* BPTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 158DEDA61C4BA02D0018FDDA /* BPTableViewController.m */; };
+		15ACE3F01C4F5C93001CDA16 /* BPMainTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15ACE3EF1C4F5C93001CDA16 /* BPMainTabBarController.m */; };
+		15ACE3F31C4F5E6E001CDA16 /* SplashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15ACE3F21C4F5E6E001CDA16 /* SplashViewController.m */; };
+		15ACE3F71C4F626E001CDA16 /* SXAdManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 15ACE3F61C4F626E001CDA16 /* SXAdManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +79,12 @@
 		158DEDA41C4B98270018FDDA /* HYQiHei-50J.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HYQiHei-50J.ttf"; sourceTree = "<group>"; };
 		158DEDA51C4BA02D0018FDDA /* BPTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPTableViewController.h; sourceTree = "<group>"; };
 		158DEDA61C4BA02D0018FDDA /* BPTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPTableViewController.m; sourceTree = "<group>"; };
+		15ACE3EE1C4F5C93001CDA16 /* BPMainTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPMainTabBarController.h; sourceTree = "<group>"; };
+		15ACE3EF1C4F5C93001CDA16 /* BPMainTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPMainTabBarController.m; sourceTree = "<group>"; };
+		15ACE3F11C4F5E6E001CDA16 /* SplashViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplashViewController.h; sourceTree = "<group>"; };
+		15ACE3F21C4F5E6E001CDA16 /* SplashViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplashViewController.m; sourceTree = "<group>"; };
+		15ACE3F51C4F626E001CDA16 /* SXAdManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SXAdManager.h; sourceTree = "<group>"; };
+		15ACE3F61C4F626E001CDA16 /* SXAdManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SXAdManager.m; sourceTree = "<group>"; };
 		E91A0DED5EF207573D5ACB97 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -160,6 +169,7 @@
 		158DED251C4B3FDA0018FDDA /* BPNews */ = {
 			isa = PBXGroup;
 			children = (
+				15ACE3F41C4F625F001CDA16 /* Other */,
 				155504C91C4DE95B0021B7D6 /* Tools */,
 				154939AB1C4C93BB00764BB8 /* News */,
 				158DED591C4B59620018FDDA /* Main */,
@@ -212,8 +222,21 @@
 				158DED5B1C4B6AC70018FDDA /* MainViewController.m */,
 				158DED9F1C4B94000018FDDA /* BPTitleLabel.h */,
 				158DEDA01C4B94000018FDDA /* BPTitleLabel.m */,
+				15ACE3EE1C4F5C93001CDA16 /* BPMainTabBarController.h */,
+				15ACE3EF1C4F5C93001CDA16 /* BPMainTabBarController.m */,
+				15ACE3F11C4F5E6E001CDA16 /* SplashViewController.h */,
+				15ACE3F21C4F5E6E001CDA16 /* SplashViewController.m */,
 			);
 			name = Main;
+			sourceTree = "<group>";
+		};
+		15ACE3F41C4F625F001CDA16 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				15ACE3F51C4F626E001CDA16 /* SXAdManager.h */,
+				15ACE3F61C4F626E001CDA16 /* SXAdManager.m */,
+			);
+			name = Other;
 			sourceTree = "<group>";
 		};
 		F98B182C8A30AACFB806B07E /* Pods */ = {
@@ -413,9 +436,12 @@
 				158DEDA11C4B94000018FDDA /* BPTitleLabel.m in Sources */,
 				158DED2B1C4B3FDA0018FDDA /* AppDelegate.m in Sources */,
 				158DEDA71C4BA02D0018FDDA /* BPTableViewController.m in Sources */,
+				15ACE3F31C4F5E6E001CDA16 /* SplashViewController.m in Sources */,
 				158DED281C4B3FDA0018FDDA /* main.m in Sources */,
 				155504CC1C4DE9820021B7D6 /* BPNetworkTools.m in Sources */,
+				15ACE3F01C4F5C93001CDA16 /* BPMainTabBarController.m in Sources */,
 				158DED5C1C4B6AC70018FDDA /* MainViewController.m in Sources */,
+				15ACE3F71C4F626E001CDA16 /* SXAdManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

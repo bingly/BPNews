@@ -29,17 +29,35 @@
     [super viewDidLoad];
     
     self.view.backgroundColor = [UIColor clearColor];
-    self.tableView.mj_header = [MJRefreshHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadData)];
-    self.tableView.mj_footer = [MJRefreshFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadData)];
+    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
     self.update = YES;
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(welcome) name:@"SXAdvertisementKey" object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(welcome) name:@"SXAdvertisementKey" object:nil];
+//    [self welcome];
     
     [self.tableView registerClass:[SXNewsCell class] forCellReuseIdentifier:@"NewsCell"];
     [self.tableView registerClass:[SXNewsCell class] forCellReuseIdentifier:@"ImagesCell"];
     [self.tableView registerClass:[SXNewsCell class] forCellReuseIdentifier:@"BigImageCell"];
     [self.tableView registerClass:[SXNewsCell class] forCellReuseIdentifier:@"TopTxtCell"];
     [self.tableView registerClass:[SXNewsCell class] forCellReuseIdentifier:@"TopImageCell"];
+}
+
+- (BOOL) prefersStatusBarHidden {
+    return YES;
+}
+
+- (void) viewWillAppear:(BOOL)animated {
+
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"update"]) {
+        return;
+    }
+    
+    if (self.update == YES) {
+        [self.tableView.mj_header beginRefreshing];
+        self.update = NO;
+    }
+    [[NSNotificationCenter defaultCenter]postNotification:[NSNotification notificationWithName:@"contentStart" object:nil]];
 }
 
 - (void) welcome {
